@@ -1,0 +1,27 @@
+; store 1 and 1 in memory
+set 0 1
+set 1 1
+
+; add the two numbers from the last comment
+add 2 0 1
+
+; a message
+set 3 The bellow should print "2":
+
+; print the variables
+dis 3
+dis 2
+dis
+
+call <print>
+jmp <end>
+
+<print>
+    ; store "Hello, world"
+    set 4 Hello, World!
+    ; print the string
+    dis 4
+    ret
+
+
+<end>

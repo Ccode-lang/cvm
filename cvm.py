@@ -23,6 +23,12 @@ while True:
             setMemAddr(inst.split(" ")[1], inst.split(" ", 2)[2])
     elif inst.split(" ")[0] == "add":
         setMemAddr(inst.split(" ")[1], memory[int(inst.split(" ")[2])] + memory[int(inst.split(" ")[3])])
+    elif inst.split(" ")[0] == "sub":
+        setMemAddr(inst.split(" ")[1], memory[int(inst.split(" ")[2])] - memory[int(inst.split(" ")[3])])
+    elif inst.split(" ")[0] == "mul":
+        setMemAddr(inst.split(" ")[1], memory[int(inst.split(" ")[2])] * memory[int(inst.split(" ")[3])])
+    elif inst.split(" ")[0] == "div":
+        setMemAddr(inst.split(" ")[1], memory[int(inst.split(" ")[2])] / memory[int(inst.split(" ")[3])])
     elif inst.split(" ")[0] == "dis":
         try:
             display = memory[int(inst.split(" ")[1])]

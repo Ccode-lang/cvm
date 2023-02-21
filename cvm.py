@@ -3,7 +3,7 @@ memory = {}
 instructions = []
 instcount = 0
 
-f = open("test.cvm", "r")
+f = open(sys.argv[1], "r")
 instructions = f.readlines()
 f.close()
 
@@ -29,6 +29,8 @@ while True:
         setMemAddr(inst.split(" ")[1], memory[int(inst.split(" ")[2])] * memory[int(inst.split(" ")[3])])
     elif inst.split(" ")[0] == "div":
         setMemAddr(inst.split(" ")[1], memory[int(inst.split(" ")[2])] / memory[int(inst.split(" ")[3])])
+    elif inst.split(" ")[0] == "import":
+        setMemAddr(inst.split(" ")[1], __import__(inst.split(" ")[2]))
     elif inst.split(" ")[0] == "dis":
         try:
             display = memory[int(inst.split(" ")[1])]
@@ -54,6 +56,8 @@ while True:
                 instcount = counter
                 break
             counter += 1
+    elif inst.split(" ")[0] == "callpy":
+        memory[int(inst.split(" ")[3])] = getattr(memory[int(inst.split(" ")[1])], inst.split(" ")[2])()
     elif inst == "ret":
         instcount = retaddr
     elif inst.startswith("<") and inst.endswith(">"):
